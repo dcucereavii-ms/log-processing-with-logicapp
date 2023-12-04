@@ -109,7 +109,7 @@ At this point, you might wonder “Why not use the built-in Blob storage trigger
     ![image](https://github.com/dcucereavii-ms/log-processing-with-logicapp/assets/82041010/bff99a35-340a-4505-a423-67ee3da98c2c)
 
       ```JSON
-            "Compose": {
+         "Compose": {
                               "inputs": "@base64ToString(body('Get_blob_content_using_path_(V2)').$content)",
                               "runAfter": {
                                   "Get_blob_content_using_path_(V2)": [
@@ -119,7 +119,7 @@ At this point, you might wonder “Why not use the built-in Blob storage trigger
                               "type": "Compose"
                           }
                       }
-     ```
+   ```
 
 6.  Create a new step and search for `Send Event` action. When you add an Event Hubs trigger or action for the first time, you're prompted to create a connection to your event hub. When you're prompted, choose one of the following options:
 
