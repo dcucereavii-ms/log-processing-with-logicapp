@@ -41,3 +41,5 @@ Upon logs arival in the Blob Storage account, an Azure Function will be triggere
       ![image](https://github.com/dcucereavii-ms/log-processing-with-logicapp/assets/82041010/a323c3ce-036d-4f3d-b069-223a63f5fbc5)
 
 At this point, you might wonder “Why not use the built-in Blob storage trigger instead?”. The key benefit of the Event Grid trigger is it eliminates the need for continuous polling, allowing Logic App to operate in a reactive mode, i.e. it springs into action only when a new Blob is created in Blob Storage, resulting in a reduction of resource consumption and costs.
+
+4. Click on + New Step and search for `Get blob content using path (V2)` to get blob container content.
