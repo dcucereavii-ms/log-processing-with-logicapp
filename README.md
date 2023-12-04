@@ -31,10 +31,11 @@ Upon logs arival in the Blob Storage account, an Azure Function will be triggere
     * Set the Resource Name to the Storage Account we want to monitor.
     * Click Edit to change the default paramaters and select Eveny Type `Microsoft.Storage.BlobCreated`.
         > We only want to trigger this workflow when we have a file added, not deleted.
-    * Click Advanced Options and create a suffix filter for `jsonslog` container.
+    * Click Advanced Options and create a suffix filter for our container.
         > See the list of Azure Storage events that allow applications to react to events, such as the creation and deletion of blobs here: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-event-overview
   
    ![image](https://github.com/dcucereavii-ms/log-processing-with-logicapp/assets/82041010/a8d33a4b-5a40-479b-b69c-b8e3e09bf7bb)
 
     * Give your Event Subscription a name.
+      
       ![image](https://github.com/dcucereavii-ms/log-processing-with-logicapp/assets/82041010/a323c3ce-036d-4f3d-b069-223a63f5fbc5)
