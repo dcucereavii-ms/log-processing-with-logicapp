@@ -16,3 +16,8 @@ Upon logs arival in the Blob Storage account, an Azure Function will be triggere
 
 ### Connect everything with Logic Apps and Event Grid
 
+1. Create a Logic App. We will use this and Event Grid to tie everything together.
+   
+2. Navigate to the Logic Apps Designer and select **When an Event Grid event occurs**.
+
+    ![Select Event Grid](./media/select-event-grid.png)
