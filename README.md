@@ -120,11 +120,15 @@ At this point, you might wonder “Why not use the built-in Blob storage trigger
 
     ![image](https://github.com/dcucereavii-ms/log-processing-with-logicapp/assets/82041010/cf7aa814-5914-4b32-a67d-57445f523808)
 
-    * In the **Event Hub name** field select the event hub where you want to send the event
+   * In the action, provide information about the events that you want to send.
+
+    ![image](https://github.com/dcucereavii-ms/log-processing-with-logicapp/assets/82041010/708d9092-bce6-4c05-841e-c2579bc2258f)
+
+   * In the **Event Hub name** field select the event hub where you want to send the event
 
     ![image](https://github.com/dcucereavii-ms/log-processing-with-logicapp/assets/82041010/80db6227-91d0-4c2f-a555-09bd7b9c9c93)
 
-    * In the **Content** field select the outputr of the *Compose** action and send the content of the blob container to Event Hub:
+   * In the **Content** field select the outputr of the *Compose** action and send the content of the blob container to Event Hub:
 
     ![image](https://github.com/dcucereavii-ms/log-processing-with-logicapp/assets/82041010/28a1f432-659e-4399-9ad2-7927cf827dfb)
 
