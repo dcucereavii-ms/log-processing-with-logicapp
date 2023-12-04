@@ -142,24 +142,24 @@ At this point, you might wonder “Why not use the built-in Blob storage trigger
 
        ```JSON
         "Send_event": {
-                              "inputs": {
-                                  "body": {
-                                      "ContentData": "@{base64(outputs('Compose'))}"
-                                  },
-                                  "host": {
-                                      "connection": {
-                                          "name": "@parameters('$connections')['<eventhub_connection_name>']['connectionId']"
-                                      }
-                                  },
-                                  "method": "post",
-                                  "path": "/@{encodeURIComponent('<storage_account_name>')}/events"
-                              },
-                              "runAfter": {
-                                  "Compose": [
-                                      "Succeeded"
-                                  ]
-                              },
-                              "type": "ApiConnection"
-                          }
-                       }
+          "inputs": {
+             "body": {
+               "ContentData": "@{base64(outputs('Compose'))}"
+             },
+             "host": {
+                "connection": {
+                   "name": "@parameters('$connections')['<eventhub_connection_name>']['connectionId']"
+                }
+             },
+             "method": "post",
+             "path": "/@{encodeURIComponent('<storage_account_name>')}/events"
+          },
+          "runAfter": {
+             "Compose": [
+                "Succeeded"
+             ]
+          },
+          "type": "ApiConnection"
+       }
+       }
        ```
