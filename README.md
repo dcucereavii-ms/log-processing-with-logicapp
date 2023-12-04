@@ -119,7 +119,7 @@ At this point, you might wonder “Why not use the built-in Blob storage trigger
                               "type": "Compose"
                           }
                       }
-          ```
+      ```
 
 6.  Create a new step and search for `Send Event` action. When you add an Event Hubs trigger or action for the first time, you're prompted to create a connection to your event hub. When you're prompted, choose one of the following options:
 
@@ -140,26 +140,26 @@ At this point, you might wonder “Why not use the built-in Blob storage trigger
    * In the **Content** field select the outputr of the *Compose** action and send the content of the blob container to Event Hub:
     ![image](https://github.com/dcucereavii-ms/log-processing-with-logicapp/assets/82041010/28a1f432-659e-4399-9ad2-7927cf827dfb)
 
- ```JSON
-      "Send_event": {
-                        "inputs": {
-                            "body": {
-                                "ContentData": "@{base64(outputs('Compose'))}"
-                            },
-                            "host": {
-                                "connection": {
-                                    "name": "@parameters('$connections')['<eventhub_connection_name>']['connectionId']"
-                                }
-                            },
-                            "method": "post",
-                            "path": "/@{encodeURIComponent('<storage_account_name>')}/events"
-                        },
-                        "runAfter": {
-                            "Compose": [
-                                "Succeeded"
-                            ]
-                        },
-                        "type": "ApiConnection"
-                    }
-                }
-    ```
+    ```JSON
+         "Send_event": {
+                           "inputs": {
+                               "body": {
+                                   "ContentData": "@{base64(outputs('Compose'))}"
+                               },
+                               "host": {
+                                   "connection": {
+                                       "name": "@parameters('$connections')['<eventhub_connection_name>']['connectionId']"
+                                   }
+                               },
+                               "method": "post",
+                               "path": "/@{encodeURIComponent('<storage_account_name>')}/events"
+                           },
+                           "runAfter": {
+                               "Compose": [
+                                   "Succeeded"
+                               ]
+                           },
+                           "type": "ApiConnection"
+                       }
+                   }
+      ```
