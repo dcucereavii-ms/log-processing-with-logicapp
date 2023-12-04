@@ -111,16 +111,21 @@ At this point, you might wonder “Why not use the built-in Blob storage trigger
 
 6.  Create a new step and search for `Send Event` action. When you add an Event Hubs trigger or action for the first time, you're prompted to create a connection to your event hub. When you're prompted, choose one of the following options:
 
-Provide the following connection information:
+   * Provide the following connection information:
+   ![image](https://github.com/dcucereavii-ms/log-processing-with-logicapp/assets/82041010/13fc4148-26a6-4300-b4a3-826e8306b3f6)
 
-Property	Required	Value	Description
-Connection Name	Yes	<connection-name>	The name to create for your connection
-Event Hubs Namespace	Yes	<event-hubs-namespace>	Select the Event Hubs namespace that you want to use.
+   * Select the Event Hubs policy to use, if not already selected, and then select Create.
 
-Select the Event Hubs policy to use, if not already selected, and then select Create.
+    Screenshot showing the provided connection information with "Create" selected.
 
-Screenshot showing the provided connection information with "Create" selected.
+    ![image](https://github.com/dcucereavii-ms/log-processing-with-logicapp/assets/82041010/cf7aa814-5914-4b32-a67d-57445f523808)
 
-    * In the **Event Hub name** field select. Upon se
+    * In the **Event Hub name** field select the event hub where you want to send the event
 
-    ![Image URL](./media/connect-image.png)
+    ![image](https://github.com/dcucereavii-ms/log-processing-with-logicapp/assets/82041010/80db6227-91d0-4c2f-a555-09bd7b9c9c93)
+
+    * In the **Content** field select the outputr of the *Compose** action and send the content of the blob container to Event Hub:
+
+    ![image](https://github.com/dcucereavii-ms/log-processing-with-logicapp/assets/82041010/28a1f432-659e-4399-9ad2-7927cf827dfb)
+
+
