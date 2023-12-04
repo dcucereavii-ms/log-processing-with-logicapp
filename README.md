@@ -10,5 +10,5 @@ This how-to guide around building logic app workflow set to monitor and then pro
 * Event Hub
 
 ## Goal
-Upon logs arival in the Blob Storage account, an Azure Function will be triggered to decompress GZip files and copy them to a new Container as json files. A logic app is set up to monitor the arival of the new json file in the second conatiner.The Logic App retrieves the event message, extracts file details, and subsequently sends events to Even Hub. The even is then available in the Event Hub.
+Upon logs arival in the Blob Storage account, an Azure Function will be triggered to decompress GZip files and copy them to a new Container as json files. A logic app is set up to monitor the arival of the new json file in the second conatiner. Logic App retrieves the event message, extracts file details, and subsequently sends events to Even Hub. The even is then available in the Event Hub.
 
