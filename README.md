@@ -161,5 +161,5 @@ At this point, you might wonder “Why not use the built-in Blob storage trigger
                               },
                               "type": "ApiConnection"
                           }
-                      }
+                       }
        ```
