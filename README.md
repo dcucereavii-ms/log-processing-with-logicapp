@@ -141,7 +141,7 @@ At this point, you might wonder “Why not use the built-in Blob storage trigger
     ![image](https://github.com/dcucereavii-ms/log-processing-with-logicapp/assets/82041010/28a1f432-659e-4399-9ad2-7927cf827dfb)
 
     ```JSON
-         "Send_event": {
+      "Send_event": {
                            "inputs": {
                                "body": {
                                    "ContentData": "@{base64(outputs('Compose'))}"
@@ -161,5 +161,5 @@ At this point, you might wonder “Why not use the built-in Blob storage trigger
                            },
                            "type": "ApiConnection"
                        }
-                   }
-      ```
+                   }   
+    ```
