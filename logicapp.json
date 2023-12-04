@@ -1,0 +1,133 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Condition": {
+                "actions": {
+                    "Compose": {
+                        "inputs": "@base64ToString(body('Get_blob_content_using_path_(V2)').$content)",
+                        "runAfter": {
+                            "Get_blob_content_using_path_(V2)": [
+                                "Succeeded"
+                            ]
+                        },
+                        "type": "Compose"
+                    },
+                    "Get_blob_content_using_path_(V2)": {
+                        "inputs": {
+                            "host": {
+                                "connection": {
+                                    "name": "@parameters('$connections')['azureblob']['connectionId']"
+                                }
+                            },
+                            "method": "get",
+                            "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('AccountNameFromSettings'))}/GetFileContentByPath",
+                            "queries": {
+                                "inferContentType": true,
+                                "path": "@{split(triggerBody()?['subject'],'/')[4]}/@{split(triggerBody()?['subject'],'/')[6]}",
+                                "queryParametersSingleEncoded": true
+                            }
+                        },
+                        "runAfter": {},
+                        "type": "ApiConnection"
+                    },
+                    "Send_event": {
+                        "inputs": {
+                            "body": {
+                                "ContentData": "@{base64(outputs('Compose'))}"
+                            },
+                            "host": {
+                                "connection": {
+                                    "name": "@parameters('$connections')['<connection_name>']['connectionId']"
+                                }
+                            },
+                            "method": "post",
+                            "path": "/@{encodeURIComponent('<storage_acct_name>')}/events"
+                        },
+                        "runAfter": {
+                            "Compose": [
+                                "Succeeded"
+                            ]
+                        },
+                        "type": "ApiConnection"
+                    }
+                },
+                "expression": {
+                    "and": [
+                        {
+                            "equals": [
+                                "@triggerBody()?['eventType']",
+                                "Microsoft.Storage.BlobCreated"
+                            ]
+                        }
+                    ]
+                },
+                "runAfter": {},
+                "type": "If"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "defaultValue": {},
+                "type": "Object"
+            }
+        },
+        "triggers": {
+            "When_a_resource_event_occurs": {
+                "inputs": {
+                    "body": {
+                        "properties": {
+                            "destination": {
+                                "endpointType": "webhook",
+                                "properties": {
+                                    "endpointUrl": "@{listCallbackUrl()}"
+                                }
+                            },
+                            "filter": {
+                                "includedEventTypes": [
+                                    "Microsoft.Storage.BlobCreated"
+                                ],
+                                "subjectBeginsWith": "/blobServices/default/containers/<container_name>/"
+                            },
+                            "topic": "/subscriptions/<subscription_id>/resourceGroups/<RG>/providers/Microsoft.Storage/storageAccounts/<storage_account_name>"
+                        }
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['azureeventgrid']['connectionId']"
+                        }
+                    },
+                    "path": "/subscriptions/<subscription_id>/providers/@{encodeURIComponent('Microsoft.Storage.StorageAccounts')}/resource/eventSubscriptions",
+                    "queries": {
+                        "x-ms-api-version": "2017-09-15-preview"
+                    }
+                },
+                "splitOn": "@triggerBody()",
+                "type": "ApiConnectionWebhook"
+            }
+        }
+    },
+    "parameters": {
+        "$connections": {
+            "value": {
+                "azureblob": {
+                    "connectionId": "/subscriptions/40f77b11-d38b-4231-aee3-7c4b23b76374/resourceGroups/<RG>/providers/Microsoft.Web/connections/<connection_name>",
+                    "connectionName": "azureblob-1",
+                    "id": "/subscriptions/<subscription_id>/providers/Microsoft.Web/locations/<location>/managedApis/azureblob"
+                },
+                "azureeventgrid": {
+                    "connectionId": "/subscriptions/subscription_id>/resourceGroups/<RG>/providers/Microsoft.Web/connections/<connection_name>",
+                    "connectionName": "azureeventgrid",
+                    "id": "/subscriptions/<subscription_id>/providers/Microsoft.Web/locations/<location>/managedApis/azureeventgrid"
+                },
+                "eventhubs_1": {
+                    "connectionId": "/subscriptions/<subscription_id>/resourceGroups/<RG>/providers/Microsoft.Web/connections/<connection_name>",
+                    "connectionName": "eventhubs-2",
+                    "id": "/subscriptions/subscription_id>/providers/Microsoft.Web/locations/e<location>/managedApis/eventhubs"
+                }
+            }
+        }
+    }
+}
